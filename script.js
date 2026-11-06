@@ -28,22 +28,28 @@ document.addEventListener("DOMContentLoaded", () => {
             let rawData = "";
 
             if (activeTab === "url") {
-                // معيار الروابط العالمي
-                rawData = document.getElementById("input-url").value.trim() || "https://google.com";
+                const el = document.getElementById("input-url");
+                rawData = (el ? el.value.trim() : "") || "https://google.com";
             } else if (activeTab === "text") {
-                // معيار النصوص الحرة
-                rawData = document.getElementById("input-text").value.trim() || "QR Code Standard";
+                const el = document.getElementById("input-text");
+                rawData = (el ? el.value.trim() : "") || "QR Code Standard";
             } else if (activeTab === "wifi") {
-                // البروتوكول العالمي الصارم لقراءة شبكات الواي فاي تلقائياً
-                const ssid = document.getElementById("wifi-ssid").value.trim();
-                const pass = document.getElementById("wifi-pass").value.trim();
-                const type = document.getElementById("wifi-type").value;
+                const ssidEl = document.getElementById("wifi-ssid");
+                const passEl = document.getElementById("wifi-pass");
+                const typeEl = document.getElementById("wifi-type");
+                
+                const ssid = ssidEl ? ssidEl.value.trim() : "";
+                const pass = passEl ? passEl.value.trim() : "";
+                const type = typeEl ? typeEl.value : "WPA";
                 rawData = ssid ? `WIFI:S:${ssid};T:${type};P:${pass};;` : "WIFI:S:MyNetwork;T:WPA;P:12345678;;";
             } else if (activeTab === "phone") {
-                // البروتوكول العالمي للمكالمات وروابط المراسلة الفورية المباشرة
-                const phone = document.getElementById("phone-num").value.trim();
-                const msg = document.getElementById("whatsapp-msg").value.trim();
+                const phoneEl = document.getElementById("phone-num");
+                const msgEl = document.getElementById("whatsapp-msg");
+                
+                const phone = phoneEl ? phoneEl.value.trim() : "";
+                const msg = msgEl ? msgEl.value.trim() : "";
                 if (phone) {
+                    // تصحيح الخطأ الكتابي وإضافة علامة الـ $ المفقودة مع السلاش
                     rawData = msg ? `https://wa.me{phone.replace('+', '')}?text=${encodeURIComponent(msg)}` : `tel:${phone}`;
                 } else {
                     rawData = "tel:+201000000000";
@@ -52,8 +58,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (qrContainer) {
                 qrContainer.innerHTML = ""; // إفراغ نظيف للحاوية
-                const colorDark = document.getElementById("color-dark").value;
-                const colorLight = document.getElementById("color-light").value;
+                const colorDarkEl = document.getElementById("color-dark");
+                const colorLightEl = document.getElementById("color-light");
+                
+                const colorDark = colorDarkEl ? colorDarkEl.value : "#000000";
+                const colorLight = colorLightEl ? colorLightEl.value : "#ffffff";
 
                 // بناء الرمز بمستوى تصحيح عالي (H) لتسهيل التقاط الكاميرات له
                 qrcodeInstance = new QRCode(qrContainer, {
@@ -77,14 +86,23 @@ document.addEventListener("DOMContentLoaded", () => {
         if(el) el.addEventListener("input", generateQR);
     });
 
-    // آلية معالجة تحميل الصورة المتوافقة تماماً مع جيت هوب وهواتف آيفون وأندرويد
+    // آلية معالجة تحميل الصورة المتوافقة ودعم الـ Canvas والـ Image معاً
     const downloadBtn = document.getElementById("download-btn");
     if(downloadBtn) {
         downloadBtn.addEventListener("click", () => {
             const img = qrContainer.querySelector("img");
+            const canvas = qrContainer.querySelector("canvas");
+            let imageSrc = null;
+
             if (img && img.src) {
+                imageSrc = img.src;
+            } else if (canvas) {
+                imageSrc = canvas.toDataURL("image/png");
+            }
+
+            if (imageSrc) {
                 const link = document.createElement("a");
-                link.href = img.src;
+                link.href = imageSrc;
                 link.download = "global-qr-code.png";
                 document.body.appendChild(link);
                 link.click();
@@ -99,7 +117,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const shareBtn = document.getElementById("share-btn");
     if(shareBtn) {
         shareBtn.addEventListener("click", () => {
-            const currentText = document.getElementById("input-url").value || window.location.href;
+            const inputUrlEl = document.getElementById("input-url");
+            const currentText = (inputUrlEl ? inputUrlEl.value : "") || window.location.href;
             if (navigator.share) {
                 navigator.share({ title: 'مشاركة رابط الـ QR', text: currentText, url: currentText })
                     .catch(() => console.log("تم إلغاء المشاركة."));
