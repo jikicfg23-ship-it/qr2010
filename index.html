@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ستوديو الـ QR المتكامل</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- زر التحكم بالوضع الداكن -->
+    <button id="theme-toggle" class="theme-btn">🌙 الوضع الداكن</button>
+
+    <div class="main-container">
+        
+        <!-- قسم التوليد وإنشاء الرموز -->
+        <div class="card generator-card">
+            <h2>🛠️ صانع الرموز المطور</h2>
+            
+            <!-- تبويبات أنواع البيانات -->
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="url">رابط URL</button>
+                <button class="tab-btn" data-tab="text">نص حر</button>
+                <button class="tab-btn" data-tab="wifi">واي فاي Wi-Fi</button>
+                <button class="tab-btn" data-tab="phone">واتساب وهاتف</button>
+            </div>
+
+            <!-- محتويات التبويبات -->
+            <div class="tab-contents">
+                <div class="tab-content active" id="tab-url">
+                    <input type="url" id="input-url" placeholder="أدخل الرابط، مثل: https://google.com">
+                </div>
+                <div class="tab-content" id="tab-text">
+                    <textarea id="input-text" placeholder="اكتب النص أو الرسالة التي تريد تشفيرها هنا..."></textarea>
+                </div>
+                <div class="tab-content" id="tab-wifi">
+                    <input type="text" id="wifi-ssid" placeholder="اسم شبكة الواي فاي (SSID)">
+                    <input type="password" id="wifi-pass" placeholder="كلمة مرور الشبكة">
+                    <select id="wifi-type">
+                        <option value="WPA">WPA/WPA2</option>
+                        <option value="WEP">WEP</option>
+                        <option value="nopass">بدون كلمة مرور</option>
+                    </select>
+                </div>
+                <div class="tab-content" id="tab-phone">
+                    <input type="tel" id="phone-num" placeholder="رقم الهاتف مع رمز الدولة (مثال: +2010...)">
+                    <textarea id="whatsapp-msg" placeholder="رسالة الواتساب التلقائية (اختياري)"></textarea>
+                </div>
+            </div>
+
+            <!-- خيارات التخصيص والمظهر -->
+            <div class="customization-section">
+                <h3>🎨 تخصيص مظهر الرمز</h3>
+                
+                <div class="control-group">
+                    <label>حجم الرمز (بكسل): <span id="size-val">300</span>px</label>
+                    <input type="range" id="qr-size" min="150" max="600" value="300" step="10">
+                </div>
+
+                <div class="color-pickers">
+                    <div class="picker">
+                        <label>لون المربعات</label>
+                        <input type="color" id="color-dark" value="#000000">
+                    </div>
+                    <div class="picker">
+                        <label>لون الخلفية</label>
+                        <input type="color" id="color-light" value="#ffffff">
+                    </div>
+                </div>
+
+                <div class="control-group upload-group">
+                    <label>إضافة شعار (Logo) في المنتصف:</label>
+                    <input type="file" id="logo-input" accept="image/*">
+                </div>
+            </div>
+
+            <!-- أزرار الإجراءات والتنزيل والمشاركة -->
+            <div class="output-actions">
+                <div id="canvas-container"></div>
+                <div class="action-buttons">
+                    <button id="download-btn" class="btn btn-primary">💾 تحميل الصورة</button>
+                    <button id="copy-btn" class="btn btn-secondary">📋 نسخ للذاكرة</button>
+                    <button id="share-btn" class="btn btn-accent">🔗 مشاركة الرمز</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- قسم قارئ وماسح الرموز -->
+        <div class="card scanner-card">
+            <h2>📷 ماسح ومفكك رموز QR</h2>
+            <p class="description">امسح الكود عبر الكاميرا أو قم برفع ملف صورة لفك تشفيره</p>
+            
+            <div id="scanner-reader"></div>
+            
+            <div class="file-scan-group">
+                <label for="scanner-file" class="file-label">📁 اختر صورة من جهازك للمسح</label>
+                <input type="file" id="scanner-file" accept="image/*">
+            </div>
+
+            <div id="scanner-result" class="result-box hidden">
+                <h4>النتيجة المستخرجة:</h4>
+                <div id="result-text" class="result-text"></div>
+                <button id="copy-result-btn" class="btn btn-small">نسخ النتيجة</button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- استدعاء مكتبات الـ QR عبر الـ CDN الرسمية لضمان الثبات التام والعمل بدون أخطاء -->
+    <script src="https://jsdelivr.net"></script>
+    <script src="https://jsdelivr.net"></script>
+    
+    <!-- كود التشغيل الخاص بك -->
+    <script src="script.js"></script>
+</body>
+</html>
