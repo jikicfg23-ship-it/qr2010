@@ -8,16 +8,14 @@
 </head>
 <body>
 
-    <!-- زر التحكم بالوضع الداكن -->
     <button id="theme-toggle" class="theme-btn">🌙 الوضع الداكن</button>
 
     <div class="main-container">
         
         <!-- قسم التوليد وإنشاء الرموز -->
         <div class="card generator-card">
-            <h2>🛠️ صانع الرموز المطور</h2>
+            <h2>🛠️ صانع الرموز المستقر</h2>
             
-            <!-- تبويبات أنواع البيانات -->
             <div class="tabs">
                 <button class="tab-btn active" data-tab="url">رابط URL</button>
                 <button class="tab-btn" data-tab="text">نص حر</button>
@@ -25,7 +23,6 @@
                 <button class="tab-btn" data-tab="phone">واتساب وهاتف</button>
             </div>
 
-            <!-- محتويات التبويبات -->
             <div class="tab-contents">
                 <div class="tab-content active" id="tab-url">
                     <input type="url" id="input-url" placeholder="أدخل الرابط، مثل: https://google.com">
@@ -48,15 +45,8 @@
                 </div>
             </div>
 
-            <!-- خيارات التخصيص والمظهر -->
             <div class="customization-section">
-                <h3>🎨 تخصيص مظهر الرمز</h3>
-                
-                <div class="control-group">
-                    <label>حجم الرمز (بكسل): <span id="size-val">300</span>px</label>
-                    <input type="range" id="qr-size" min="150" max="600" value="300" step="10">
-                </div>
-
+                <h3>🎨 تخصيص الألوان</h3>
                 <div class="color-pickers">
                     <div class="picker">
                         <label>لون المربعات</label>
@@ -67,20 +57,15 @@
                         <input type="color" id="color-light" value="#ffffff">
                     </div>
                 </div>
-
-                <div class="control-group upload-group">
-                    <label>إضافة شعار (Logo) في المنتصف:</label>
-                    <input type="file" id="logo-input" accept="image/*">
-                </div>
             </div>
 
-            <!-- أزرار الإجراءات والتنزيل والمشاركة -->
             <div class="output-actions">
-                <div id="canvas-container"></div>
+                <!-- حاوية توليد الرمز -->
+                <div id="qrcode-container"></div>
+                
                 <div class="action-buttons">
                     <button id="download-btn" class="btn btn-primary">💾 تحميل الصورة</button>
-                    <button id="copy-btn" class="btn btn-secondary">📋 نسخ للذاكرة</button>
-                    <button id="share-btn" class="btn btn-accent">🔗 مشاركة الرمز</button>
+                    <button id="share-btn" class="btn btn-accent">🔗 مشاركة الرابط</button>
                 </div>
             </div>
         </div>
@@ -88,7 +73,7 @@
         <!-- قسم قارئ وماسح الرموز -->
         <div class="card scanner-card">
             <h2>📷 ماسح ومفكك رموز QR</h2>
-            <p class="description">امسح الكود عبر الكاميرا أو قم برفع ملف صورة لفك تشفيره</p>
+            <p class="description">امسح الكود عبر الكاميرا أو ارفع صورة لفك تشفيرها</p>
             
             <div id="scanner-reader"></div>
             
@@ -106,11 +91,9 @@
 
     </div>
 
-    <!-- استدعاء مكتبات الـ QR عبر الـ CDN الرسمية لضمان الثبات التام والعمل بدون أخطاء -->
+    <!-- مكتبات متوافقة ومستقرة تماماً مع GitHub Pages بدون مشاكل حماية -->
+    <script src="https://cloudflare.com"></script>
     <script src="https://jsdelivr.net"></script>
-    <script src="https://jsdelivr.net"></script>
-    
-    <!-- كود التشغيل الخاص بك -->
     <script src="script.js"></script>
 </body>
 </html>
