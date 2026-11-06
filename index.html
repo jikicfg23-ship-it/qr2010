@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ستوديو الـ QR المتكامل</title>
+    <title>ستوديو الـ QR المتكامل المستقر</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -12,9 +12,9 @@
 
     <div class="main-container">
         
-        <!-- قسم التوليد وإنشاء الرموز -->
+        <!-- قسم التوليد -->
         <div class="card generator-card">
-            <h2>🛠️ صانع الرموز المستقر</h2>
+            <h2>🛠️ صانع الرموز المقاوم للتعليق</h2>
             
             <div class="tabs">
                 <button class="tab-btn active" data-tab="url">رابط URL</button>
@@ -28,7 +28,7 @@
                     <input type="url" id="input-url" placeholder="أدخل الرابط، مثل: https://google.com">
                 </div>
                 <div class="tab-content" id="tab-text">
-                    <textarea id="input-text" placeholder="اكتب النص أو الرسالة التي تريد تشفيرها هنا..."></textarea>
+                    <textarea id="input-text" placeholder="اكتب النص أو الرسالة هنا..."></textarea>
                 </div>
                 <div class="tab-content" id="tab-wifi">
                     <input type="text" id="wifi-ssid" placeholder="اسم شبكة الواي فاي (SSID)">
@@ -70,12 +70,12 @@
             </div>
         </div>
 
-        <!-- قسم قارئ وماسح الرموز -->
+        <!-- قسم الماسح -->
         <div class="card scanner-card">
             <h2>📷 ماسح ومفكك رموز QR</h2>
             <p class="description">امسح الكود عبر الكاميرا أو ارفع صورة لفك تشفيرها</p>
             
-            <div id="scanner-reader"></div>
+            <div id="scanner-reader" style="width: 100%;"></div>
             
             <div class="file-scan-group">
                 <label for="scanner-file" class="file-label">📁 اختر صورة من جهازك للمسح</label>
@@ -91,9 +91,9 @@
 
     </div>
 
-    <!-- مكتبات متوافقة ومستقرة تماماً مع GitHub Pages بدون مشاكل حماية -->
-    <script src="https://cloudflare.com"></script>
-    <script src="https://jsdelivr.net"></script>
+    <!-- استدعاء المكتبات عبر روابط حماية عالية تدعم HTTPS بشكل كامل وملائم لجيت هوب -->
+    <script src="https://cloudflare.com" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://jsdelivr.net" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="script.js"></script>
 </body>
 </html>
